@@ -1,0 +1,19 @@
+Each sample in the dataset (“Hog-Feat.txt”) is associated with a specific image containing a group of two people. 
+In the file “Hog-Feat-with-image-file-names.txt” each sample includes the file name of the image associated with that sample.
+
+Each sample contains 100 body features. These include 50 Pyramid Histogram of Oriented Gradients (PHOG) for each of the main bodies detected in the images.
+
+If you are interested in more information about how the features are calculated, see: 
+
+W. Mou, O. Celiktutan and H. Gunes: “Group-level Arousal and Valence Recognition from Static Images: Face, Body and Context”, Proc. of 11th IEEE Intl. Conference on Automatic Face and Gesture Recognition Conference and Workshops, Ljubljana, Slovenia, 4-8 May 2015.
+
+A. Bosch, A. Zisserman, and X. Munoz, "Representing shape with a
+spatial pyramid kernel," in CIVR, 2007, pp. 401–408.
+
+The dataset also includes a label for each sample. 
+This describes the emotion expressed by the group of people. This can be either "positive", "negative" or "neutral".
+
+
+
+
+

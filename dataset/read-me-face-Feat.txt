@@ -1,0 +1,30 @@
+Each sample in the dataset (“face-feat.txt”) is associated with a specific image containing a group of two people. 
+In the file “face-feat-with-image-file-names.txt” each sample includes the file name of the image associated with that sample.
+
+Each sample contains 22 features, which include 11 geometrical features for each face in the image.
+These are based on the distances between specific points of interest in the face and include the following:
+
+lip states (distance between lip corners)
+mouth open
+eye blinking (first)
+eye blinking (second)
+eyebrow
+face zoom
+eye-eyebrow separation
+head yaw
+lip shape(first)
+lip shape (second)
+eyebrow raise
+
+The features above are in the same order as in the dataset. Two sets of the above features are concatenated in each sample of the dataset (11 features for the first face followed by 11 features for the second face).
+
+If you are interested in more information about how the features are calculated, see: 
+
+W. Mou, O. Celiktutan and H. Gunes: “Group-level Arousal and Valence Recognition from Static Images: Face, Body and Context”, Proc. of 11th IEEE Intl. Conference on Automatic Face and Gesture Recognition Conference and Workshops, Ljubljana, Slovenia, 4-8 May 2015.
+
+H. C. Akakin and B. Sankur (2011). Robust classification of face and head gestures in video. Image and Vision Computing, vol. 29, no. 7, pp. 470–483, 2011.
+
+The dataset also includes a label for each sample. 
+This describes the emotion expressed by the group of people. This can be either "positive", "negative" or "neutral".
+
+
