@@ -6,7 +6,6 @@ Spring 2019
 Assignment 1, Lingyan Duan
 """
 # Import datasets, classifiers and performance metrics
-
 import pandas as pd
 import numpy as np
 import cv2
@@ -19,6 +18,7 @@ from sklearn.svm import LinearSVC
 
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 
 '''
 Global Variables 
@@ -35,23 +35,23 @@ def holdOut(fnData, labelsData, nSamples, percentSplit=0.8):
         n_trainSamples = int(nSamples*percentSplit)
         trainData = fnData[:n_trainSamples]
         trainLabels = labelsData[:n_trainSamples]
-        print(trainLabels)
         
         testData = fnData[n_trainSamples:]
         expectedLabels = labelsData[n_trainSamples:]
-        print(expectedLabels)
     else:
         trainData, testData, trainLabels, expectedLabels = train_test_split(fnData, labelsData,
                                                                             test_size=(1.0-percentSplit), random_state=0)
 
     return trainData, trainLabels, testData, expectedLabels
 
-def plotData(X):
+def plotData(X, labelsData):
     '''
     This function plots either 2D data or 3D data
     '''
     if(DATA_2D):
-        plt.scatter(X[:,0], X[:,1])
+        # Convert labels from string into integer, then plot it in different colors
+        labelsData = pd.Categorical(pd.factorize(labelsData)[0])
+        plt.scatter(X[:,0], X[:,1], c=labelsData, cmap=plt.cm.summer)
         plt.show()
     else:
         fig = plt.figure()
@@ -79,13 +79,11 @@ data2.iloc[:, 0] = data2.iloc[:, 0].str.strip("Hog_body_")
 
 # Merge datasets into one
 data3 = pd.merge(data1, data2, how="inner", on=[0,1])
-print(type(data3))
-print(data3)
 
 # Shuffle DataFrame rows
 data3 = data3.sample(frac=1).reset_index(drop=True)
 
-# Remove image file names
+# Remove image file names, seperate feature data and label data
 labelsData = data3.iloc[:, 1]
 data3 = data3.iloc[:, 2:]
 
@@ -108,7 +106,7 @@ else:
     X_trans = tsne.fit_transform(data3)
     
 # Ploting Data
-plotData(X_trans)
+plotData(X_trans, labelsData)
 
 # Manually Split your data
 X_train, X_labels, X_test, X_trueLabels = holdOut(data3, labelsData, n_samples)
